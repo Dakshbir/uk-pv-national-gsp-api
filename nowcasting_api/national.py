@@ -1,4 +1,4 @@
-"""National API routes"""
+vg"""National API routes"""
 
 import os
 from datetime import datetime, timedelta
@@ -50,6 +50,25 @@ elexon_forecast_api = GenerationForecastApi(api_client)
 @cache_response
 @limiter.limit(f"{N_CALLS_PER_HOUR}/hour")
 def get_national_forecast(
+    request: Request,
+    session: Session = Depends(get_session),
+    forecast_horizon_minutes: Optional[int] = None,
+    user: Auth0User = Security(get_user()),
+    include_metadata: bool = False,
+    start_datetime_utc: Optional[str] = None,
+    end_datetime_utc: Optional[str] = None,
+    creation_limit_utc: Optional[str] = None,
+    model_name: ModelEnum = ModelEnum.blend,
+    request: Request,
+    session: Session = Depends(get_session),
+    forecast_horizon_minutes: Optional[int] = None,
+    user: Auth0User = Security(get_user()),
+    include_metadata: bool = False,
+    start_datetime_utc: Optional[str] = None,
+    end_datetime_utc: Optional[str] = None,
+    creation_limit_utc: Optional[str] = None,
+    model_name: ModelEnum = ModelEnum.blend,
+    model_name: ModelEnum = ModelEnum.blend,
     request: Request,
     session: Session = Depends(get_session),
     forecast_horizon_minutes: Optional[int] = None,
